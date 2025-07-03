@@ -1,6 +1,11 @@
 import openai
+import os
+from dotenv import load_dotenv
 
-openai.api_key = "openai.api_key"
+load_dotenv()
+
+# Get API key from environment variable
+openai.api_key = os.getenv("GROQ_API_KEY")
 openai.api_base = "https://api.groq.com/openai/v1"
 MODEL = "llama3-8b-8192"
 
@@ -43,23 +48,33 @@ Here are the abnormal lab values:
 def parse_ai_summary_for_flags(summary_text):
     import re
     flagged_params = []
-    
-    # Matches bullets starting with *, •, or -
+
+    # Match bullet points like *, •, -
     bullet_lines = re.findall(r"[*•\-]\s+(.+?)(?:\n|$)", summary_text)
 
     for line in bullet_lines:
+        print("🔍 Bullet line:", line)  # DEBUG LOG
+
+        # Match patterns like: Parameter (12.5) is high, indicating something.
         match = re.match(
-            r"(.+?)\s*\(([\d.]+)\)\s+is\s+(high|low),\s+indicating\s+(.+)",
-            line.strip(), re.IGNORECASE
+            r"(.+?)\s*\(([\d.,]+)\)\s+is\s+(high|low),\s+indicating\s+(.+)",
+            line.strip(),
+            re.IGNORECASE
         )
         if match:
             param, value, status, insight = match.groups()
-            flagged_params.append({
-                "parameter": param.strip(),
-                "value": float(value),
-                "unit": "",
-                "range": "",
-                "status": "Needs Attention" if status.lower() in ["high", "low"] else "Normal",
-                "insight": insight.strip()
-            })
+            # Clean value in case it has comma
+            value = value.replace(",", "")
+            try:
+                flagged_params.append({
+                    "parameter": param.strip(),
+                    "value": float(value),
+                    "unit": "",
+                    "range": "",
+                    "status": "Needs Attention" if status.lower() in ["high", "low"] else "Normal",
+                    "insight": insight.strip()
+                })
+            except ValueError:
+                continue
+
     return flagged_params
