@@ -43,10 +43,15 @@ Here are the abnormal lab values:
 def parse_ai_summary_for_flags(summary_text):
     import re
     flagged_params = []
-    bullet_lines = re.findall(r"\* (.+?)\n", summary_text + "\n")
+    
+    # Matches bullets starting with *, •, or -
+    bullet_lines = re.findall(r"[*•\-]\s+(.+?)(?:\n|$)", summary_text)
 
     for line in bullet_lines:
-        match = re.match(r"(.+?) \(([\d.]+)\) is (high|low), indicating (.+)", line.strip())
+        match = re.match(
+            r"(.+?)\s*\(([\d.]+)\)\s+is\s+(high|low),\s+indicating\s+(.+)",
+            line.strip(), re.IGNORECASE
+        )
         if match:
             param, value, status, insight = match.groups()
             flagged_params.append({
@@ -54,7 +59,7 @@ def parse_ai_summary_for_flags(summary_text):
                 "value": float(value),
                 "unit": "",
                 "range": "",
-                "status": "Needs Attention" if status in ["high", "low"] else "Normal",
+                "status": "Needs Attention" if status.lower() in ["high", "low"] else "Normal",
                 "insight": insight.strip()
             })
-    return flagged_params 
+    return flagged_params
