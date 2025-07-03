@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Custom color variables (optional, Tailwind provides built-in colors) */
+  --primary: #3b82f6;
+  --secondary: #10b981;
+  --danger: #ef4444;
+}
+
+/* Apply base styles */
+body {
+  @apply bg-gray-50 text-gray-800 min-h-screen font-sans m-0 p-0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Headings */
+h1 {
+  @apply text-4xl font-bold leading-tight;
+}
+
+h2 {
+  @apply text-2xl font-semibold;
+}
+
+h3 {
+  @apply text-xl font-medium;
+}
+
+/* Links */
+a {
+  @apply font-medium text-blue-600 hover:text-blue-800 underline;
+}
+
+/* Buttons */
+button {
+  @apply rounded-lg border border-transparent px-4 py-2 text-base font-medium bg-gray-800 text-white hover:border-blue-500 transition duration-200;
+}
+
+/* Responsive Container */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white p-4 sm:p-6 rounded-lg shadow border border-gray-200 transition duration-200 hover:shadow-md;
+}
+
+/* Card Grid */
+.card-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6;
+}
+
+/* Table wrapper */
+.table-container {
+  @apply overflow-x-auto mt-6 rounded-lg;
+}
+
+/* Table */
+.table {
+  @apply min-w-full divide-y divide-gray-200;
+}
+
+.table th {
+  @apply bg-gray-100 px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wide;
+}
+
+.table td {
+  @apply px-4 py-3 text-sm text-gray-700 whitespace-nowrap;
+}
+
+/* Status badges */
+.badge {
+  @apply inline-block px-3 py-1 rounded-full text-xs font-medium;
+}
+
+.badge-normal {
+  @apply bg-green-100 text-green-800;
+}
+
+.badge-warning {
+  @apply bg-red-100 text-red-800;
+}

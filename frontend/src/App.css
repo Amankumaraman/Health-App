@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Root container - responsive and centered */
+#root {
+  @apply max-w-7xl mx-auto px-4 py-8 text-center;
+}
+
+/* Logo animations & styles */
+.logo {
+  @apply h-24 p-6 transition duration-300 ease-in-out;
+  will-change: filter;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+/* Spin animation */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* Card styling */
+.card {
+  @apply bg-white p-6 rounded-lg shadow border border-gray-200 text-left;
+}
+
+/* Text helper */
+.read-the-docs {
+  @apply text-gray-500 mt-4 text-sm;
+}
