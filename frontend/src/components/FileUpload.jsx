@@ -11,11 +11,13 @@ const FileUpload = ({ onExtract }) => {
     formData.append("file", file);
 
     try {
-      const res = await axios.post("http://localhost:8000/upload", formData);
+      const API_BASE = import.meta.env.VITE_API_BASE_URL;
+      const res = await axios.post(`${API_BASE}/upload`, formData);
       console.log("📦 Full Backend Response:", res.data);
       onExtract(res.data);
     } catch (error) {
-      console.error("Upload failed:", error);
+      console.error("❌ Upload failed:", error);
+      alert("Upload failed. Please try again.");
     }
   };
 
