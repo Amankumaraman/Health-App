@@ -8,7 +8,7 @@ from ai_summary import generate_health_summary ,parse_ai_summary_for_flags # �
 
 # ✅ Load Google Vision credentials
 VISION_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    "Credentials.json"
+    "/etc/secrets/credentials.json"
 )
 
 # ✅ Google Vision OCR
