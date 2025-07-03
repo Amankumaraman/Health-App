@@ -27,28 +27,6 @@ An end-to-end health report analysis web app that extracts medical parameters fr
 
 ---
 
-## 📂 Project Structure
-
-```
-
-Health-App/
-│
-├── frontend/             # React + Vite frontend
-│   ├── components/
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── .env              # Contains VITE\_API\_BASE\_URL
-│
-├── backend/              # FastAPI backend
-│   ├── main.py
-│   ├── ocr\_utils.py
-│   ├── ai\_summary.py
-│   └── requirements.txt
-│
-├── .gitignore
-└── README.md             # ← You’re here
-
-````
 
 ---
 
@@ -122,13 +100,6 @@ Deployed on **Vercel**:
 🖼️ Add env variable: `VITE_API_BASE_URL=https://health-app-38az.onrender.com`
 → Then **Redeploy**
 
----
-
-## 📸 Screenshots
-
-<img src="https://user-images.githubusercontent.com/your-ss-here" width="600"/>
-
----
 
 ## 🤖 AI Integration
 
