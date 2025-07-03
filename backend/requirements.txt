@@ -1,7 +1,9 @@
-fastapi
-uvicorn
-pytesseract
-pdf2image
-pillow
-python-multipart
-pandas
+fastapi>=0.68.0
+uvicorn>=0.15.0
+python-multipart>=0.0.5
+pymupdf>=1.18.0
+pillow>=8.3.1
+google-cloud-vision>=2.0.0
+google-auth>=1.35.0
+openai>=0.27.0
+regex>=2021.4.4
